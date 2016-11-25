@@ -1,0 +1,76 @@
+
+" Plug 'https://github.com/drmikehenry/vim-fixkey.git'
+" Plug 'https://github.com/mhinz/vim-hugefile.git'
+" Plug 'https://github.com/tpope/vim-sensible.git'
+" Plug 'https://github.com/ervandew/supertab.git'
+" Plug 'https://github.com/xuhdev/SingleCompile.git'
+" Plug 'https://github.com/vim-pandoc/vim-pandoc'
+" Plug 'https://github.com/Shougo/vimproc.vim.git', {'frozen':1}
+" Plug 'https://github.com/Shougo/vimshell.vim.git' " vimshell依赖于vimproc，在vim中提供shell功能
+" Plug 'https://github.com/luochen1990/rainbow.git' " 本来是用它做括号高亮的，效果不好，放弃了
+" Plug 'css-color-preview'
+" Plug 'https://github.com/godlygeek/csapprox.git'    " 让给GUI设计的配色适应256色终端
+" Plug 'https://github.com/roman/golden-ratio.git' " Resize window
+" Plug 'https://github.com/kien/ctrlp.vim.git' "中文翻译：https://github.com/codepiano/ctrlp.vim/blob/master/doc/ctrlp.cnx
+" Plug 'https://github.com/itchyny/calendar.vim.git'
+" Plug 'vim-markdown-wiki' " markdown中 enter跳转到链接文件，shfit-enter返回
+
+" Plugin 'https://github.com/bling/vim-airline.git'
+
+
+" -------- airLine --------
+"比powrLine要轻量级 airline可以与众多插件协作,具体见help airline-extensions
+set laststatus=2
+let g:airline_exclude_preview = 1
+" luna badwolf sol
+let g:airline_theme = "luna"
+let g:airline#extensions#tabline#enabled       = 0
+let g:airline#extensions#tabline#show_buffers  = 0 " enable/disable displaying buffers with a single tab. >
+let g:airline#extensions#tabline#show_tabs     = 1    " enable/disable displaying tabs, regardless of number. >
+let g:airline_powerline_fonts = 0
+
+let g:airline_left_sep      = ''
+let g:airline_left_alt_sep  = '☞'
+let g:airline_right_sep     = ''
+let g:airline_right_alt_sep = '☜'
+
+let g:airline#extensions#whitespace#enabled = 0 "关闭空白字符检测
+let g:airline#extensions#whitespace#checks = ['indent']
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tagbar#flags = "s"
+let g:airline_symbols = exists('g:airline_symbols') ? g:airline_symbols : {}
+let g:airline_symbols.readonly = "只读"
+
+let g:airline#extensions#quickfix#quickfix_text = 'Quickfix编译' " configure the title text for quickfix buffers
+let g:airline#extensions#quickfix#location_text = 'Location'     " configure the title text for location list buffers
+
+let g:airline_section_z = "%LL-%p%%✎ %#__accent_bold#%l,%-2v%#__restore__#(☺ %{strftime('%H:%M:%S')})" 
+"let g:airline_section_z = airline#section#create(['windowswap', '%3p%%'.spc, 'linenr', ':%3v '])
+
+let g:airline_mode_map = {
+    \ '__' : '------',
+    \ 'n'  : '一般',
+    \ 'i'  : '插入',
+    \ 'R'  : '替换',
+    \ 'c'  : 'COMMAND',
+    \ 'v'  : '可视',
+    \ 'V'  : '可视-行',
+    \ '' : '可视-块',
+    \ 's'  : '选择',
+    \ 'S'  : '选择-行',
+    \ '' : '选择-块',
+    \ }
+
+function! Flush_statusline()
+    call feedkeys("\<ESC>")
+endfunction
+augroup vimrc_autoFlushStatusLine
+"autocmd! CursorHold * call Flush_statusline()
+augroup END
+"let &ro = &ro "强制更新状态栏 仅所有的GUI版本及部分系统有效
+
+
+" ------------ vimshell ------------ 
+" 注，Windows下，执行使用utf8编码的软件，可以：vimshell% youapp.exe " --encoding=gbk
+let g:vimshell_prompt_expr =  'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
+let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
