@@ -51,9 +51,6 @@ function! s:moduleNameToPath(name)
 endfunction
 
 function! LoadModuleEnd()
-    for name in s:modules
-        exec 'source ' . s:moduleNameToPath(name)
-    endfor
     call plug#end()
 
     for name in s:modules
@@ -73,6 +70,7 @@ function! LoadModule(name)
     endif
 
     call add(s:modules, a:name)
+    exec 'source ' . s:moduleNameToPath(a:name)
     return 1 
 endfunction
 
