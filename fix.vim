@@ -1,3 +1,4 @@
+Plug 'https://github.com/vim-scripts/fcitx.vim.git'
 
 " 一些功能需要其它程序的支持，将这些程序加入到环境变量
 if g:isWindows
@@ -41,5 +42,3 @@ if !has("gui_running") && !has('nvim')
     "http://sunaku.github.io/vim-256color-bce.html
     set t_ut=
 endif
-
-

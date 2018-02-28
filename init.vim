@@ -18,9 +18,3 @@ call LoadModule('ui')         " 界面相关设置
 call LoadModule('other')      " 其它的东西
 
 call LoadModuleEnd()
-
-
-
-
-
-

@@ -75,37 +75,3 @@ function! LoadModule(name)
 endfunction
 
 
-" ===================== key binding function ====================
-" 以前尝试的一种想法，未完成
-"
-let s:key_to_description = {}
-function AddBindingDescription(keys, description)
-    let s:key_to_description[a:keys] =  a:description
-endfunction
-
-function AddPrefix(prefix, description)
-    call AddBindingDescription(a:prefix, '+' . a:description)
-    exec printf("map<silent> %s :call DisplayDescription('%s')<CR>", a:prefix, escape(a:prefix, "<>"))
-endfunction
-
-function DisplayDescription(prefix)
-    :let prefix = substitute(a:prefix, "\\", "", "g")
-    let maybe_subkey = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-                \ 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    let i = 1
-    let buf = ''
-    for subkey in maybe_subkey
-        let key = prefix . subkey
-        if has_key(s:key_to_description, key)
-            let buf .= printf("%s(%s)\t\t", key, s:key_to_description[key])
-            if i % 4 == 0
-                let buf .= "\n"
-            endif
-        endif
-        let i += 1
-    endfor
-    echo buf
-endfunction
-
-
-

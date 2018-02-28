@@ -1,19 +1,12 @@
 
 " ----------------------------- UI -----------------------------
-Plug 'https://github.com/Yggdroot/indentLine.git'  " 缩进可视化
 Plug 'https://github.com/itchyny/lightline.vim.git'
-Plug 'https://github.com/kshenoy/vim-signature.git' " 书签可视化
-Plug 'https://github.com/c9s/colorselector.vim.git' " 像女人试衣服一样试配色
-Plug 'https://github.com/sheerun/vim-polyglot.git' "提供大多数语言的高亮和缩进等配置
-Plug 'https://github.com/mhinz/vim-startify.git' "在开始界面列出一些东西（这插件有session命令管理功能）
 Plug 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'https://github.com/tomasr/molokai.git'
-" Plug 'https://github.com/skammer/vim-css-color.git'
 
 function Userconfig__ui()
 " 自己写的功能，ctrl-鼠标滚轮即可切换字体大小
 call LoadModule('feature/font')
-call LoadModule('feature/fullscreen') " 窗口最大化
 
 
 " ------------------ 窗口 --------------------
@@ -59,18 +52,15 @@ call LoadModule('feature/tabline')
 set tabline=%!MyTabLine()
 
 " lightLine
-call LoadModule('plugin.lightline')
+call LoadModule('feature/plugin.lightline')
 
 " -------------------- 皮肤 -----------------------------
-
 " solarized 
 let g:solarized_termcolors = 256
 " let g:solarized_termtrans = 1 " 设置为1solarized主题会使用透明终端的背景
 
 " molokai 
 let g:rehash256 = 1
-
-" colorselector " 像女人试衣服一样试配色
 
 
 if g:isGUI
